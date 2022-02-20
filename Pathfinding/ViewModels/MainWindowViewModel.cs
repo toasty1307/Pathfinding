@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Pathfinding.ViewModels;
 
-namespace Pathfinding.ViewModels
+public class MainWindowViewModel : ViewModelBase
 {
-    public class MainWindowViewModel : ViewModelBase
-    {
-        public string Greeting => "Welcome to Avalonia!";
-    }
+    
 }

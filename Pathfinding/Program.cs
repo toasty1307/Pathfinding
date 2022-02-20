@@ -1,24 +1,50 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Logging;
 using Avalonia.ReactiveUI;
+using Serilog;
+using Splat;
+using Splat.Serilog;
 
-namespace Pathfinding
+namespace Pathfinding;
+
+internal class Program
 {
-    class Program
+    [STAThread]
+    public static void Main(string[] args)
     {
-        // Initialization code. Don't use any Avalonia, third-party APIs or any
-        // SynchronizationContext-reliant code before AppMain is called: things aren't initialized
-        // yet and stuff might break.
-        [STAThread]
-        public static void Main(string[] args) => BuildAvaloniaApp()
-            .StartWithClassicDesktopLifetime(args);
+        var handle = GetConsoleWindow();
+        ShowWindow(handle, 0); // hide console window
 
-        // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp()
-            => AppBuilder.Configure<App>()
-                .UsePlatformDetect()
-                .LogToTrace()
-                .UseReactiveUI();
+        var listener = new SerilogTraceListener.SerilogTraceListener();
+        Trace.Listeners.Add(listener);
+        Locator.CurrentMutable.UseSerilogFullLogger();
+        
+        Log.Logger = new LoggerConfiguration()
+            .Enrich.FromLogContext()
+            .MinimumLevel.Information()
+            .WriteTo.Console()
+            .CreateLogger();
+
+        var app = BuildAvaloniaApp();
+        app.StartWithClassicDesktopLifetime(args);
+    }
+
+    [DllImport("kernel32.dll")]
+    private static extern IntPtr GetConsoleWindow();
+
+    [DllImport("user32.dll")]
+    private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+    
+    public static AppBuilder BuildAvaloniaApp()
+    {
+        var app = AppBuilder.Configure<App>();
+        app.UsePlatformDetect();
+        app.LogToTrace(LogEventLevel.Information);
+        app.UseReactiveUI();
+        
+        return app;
     }
 }

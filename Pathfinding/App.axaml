@@ -5,8 +5,13 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-
+    
+    <Application.Resources>
+        <FontFamily x:Key="SourceSansPro">/Assets/Fonts/SourceSansPro/SourceSansPro-Regular.ttf#Source Sans Pro</FontFamily>
+    </Application.Resources>
+    
     <Application.Styles>
-        <FluentTheme Mode="Light"/>
+        <FluentTheme Mode="Dark"/>
+        <StyleInclude Source="/Styles/Button.axaml"/>
     </Application.Styles>
 </Application>

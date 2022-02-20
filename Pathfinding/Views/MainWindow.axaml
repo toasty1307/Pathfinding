@@ -3,15 +3,53 @@
         xmlns:vm="using:Pathfinding.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:controls="clr-namespace:Pathfinding.Controls"
+        mc:Ignorable="d" d:DesignWidth="820" d:DesignHeight="853"
         x:Class="Pathfinding.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Pathfinding">
-
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+        Title="Pathfinding" Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterScreen"
+        TransparencyLevelHint="AcrylicBlur"
+        MinHeight="853" MinWidth="820"
+        MaxHeight="853" MaxWidth="820" 
+        Height="853" Width="820" 
+        FontFamily="{StaticResource SourceSansPro}"
+        >
+  
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+  
+  <Panel>
+    <ExperimentalAcrylicBorder IsHitTestVisible="False">
+      <ExperimentalAcrylicBorder.Material>
+        <ExperimentalAcrylicMaterial
+          BackgroundSource="Digger"
+          TintColor="Black"
+          TintOpacity="1"
+          MaterialOpacity="0.65"
+        />
+      </ExperimentalAcrylicBorder.Material>
+    </ExperimentalAcrylicBorder>
+    <Grid RowDefinitions="30, 1, 100*">
+      <Panel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False">
+        <TextBlock FontSize="20">Path Finding</TextBlock>
+      </Panel>
+      <Separator Grid.Row="1" IsHitTestVisible="True" Height="1" Background="#282C34"/>
+      <Panel Grid.Row="2" IsHitTestVisible="True">
+        <DockPanel VerticalAlignment="Top" Margin="10 10 10 0">
+          <Button Classes="Squish"  Content="Reset" DockPanel.Dock="Right" Click="ResetButtonClicked"/>
+          <TextBlock Text="Width" FontSize="20"/>
+          <NumericUpDown Name="BlocksSizeX" ParsingNumberStyle="Integer" Margin="10 0 0 0" Maximum="100" Minimum="10" Value="10" Width="150" HorizontalAlignment="Left" ValueChanged="WidthValueChanged"/>
+          <TextBlock Text="Height" FontSize="20" Margin="10 0 0 0"/>
+          <NumericUpDown Name="BlocksSizeY" ParsingNumberStyle="Integer" Margin="10 0 0 0" Maximum="100" Minimum="10" Value="10" Width="150" HorizontalAlignment="Left" ValueChanged="HeightValueChanged"/>
+          <TextBlock Name="StatusTextBlock" FontSize="25" Margin="10 0 0 0"/>
+        </DockPanel>
+        <Panel Name="Blocks" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 10 0 5" Width="820" Height="800">
+          <controls:Block BlockType="Start"/>
+        </Panel>
+      </Panel>
+    </Grid>
+  </Panel>
 </Window>

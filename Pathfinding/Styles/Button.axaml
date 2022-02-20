@@ -1,10 +1,43 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
   <Design.PreviewWith>
-    <Border Padding="20">
-      <!-- Add Controls for Previewer Here -->
+    <Border Padding="200">
+      <Button Classes="Squish">
+        Hi 
+      </Button>
     </Border>
   </Design.PreviewWith>
-
-  <!-- Add Styles Here -->
+    
+  <Style Selector="ToggleButton.Squish">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="ToggleButton.Squish:pointerover">
+    <Setter Property="RenderTransform" Value="scale(1.1)"/>
+  </Style>
+  <Style Selector="ToggleButton.Squish:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="ToggleButton.Squish:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="ToggleButton.Squish:pressed">
+    <Setter Property="RenderTransform" Value="scale(1.2)"/>
+  </Style>
+    
+  <Style Selector="Button.Squish">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="Button.Squish:pointerover">
+    <Setter Property="RenderTransform" Value="scale(1.1)"/>
+  </Style>
+  <Style Selector="Button.Squish:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="Button.Squish:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{StaticResource AccentButtonBackground}"/>
+  </Style>
+  <Style Selector="Button.Squish:pressed">
+    <Setter Property="RenderTransform" Value="scale(1.2)"/>
+  </Style>
 </Styles>
