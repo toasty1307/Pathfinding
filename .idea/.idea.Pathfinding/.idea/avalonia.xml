@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Pathfinding/App.axaml" value="Pathfinding/Pathfinding.csproj" />
+        <entry key="Pathfinding/Pathfinding/App.axaml" value="Pathfinding/Pathfinding.NetCore/Pathfinding.NetCore.csproj" />
+        <entry key="Pathfinding/Pathfinding/Views/MainView.axaml" value="Pathfinding/Pathfinding.NetCore/Pathfinding.NetCore.csproj" />
+        <entry key="Pathfinding/Pathfinding/Views/MainWindow.axaml" value="Pathfinding/Pathfinding.NetCore/Pathfinding.NetCore.csproj" />
+        <entry key="Pathfinding/Views/MainWindow.axaml" value="Pathfinding/Pathfinding.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
